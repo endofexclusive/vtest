@@ -1,0 +1,16 @@
+# vtest - a minimal unit test framework
+
+## Instructions
+See include/vtest.h for API and vtest_example.c for an example.
+
+    $ cc -Iinclude -std=c99 -Wall -Wextra -pedantic vtest_example.c vtest.c -o vtest_example
+    $ ./vtest_example 
+    
+    -----------------
+    PASS: 2
+    FAIL: 2
+     main:7 '0 == 1'
+     main:10 '!"I should fail"'
+    -----------------
+    $ 
+
