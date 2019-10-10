@@ -1,9 +1,56 @@
-# vtest - a minimal unit test framework
+About
+=====
 
-## Instructions
+vtest is a minimal unit test framework
+
+
+Features
+========
+
+- Easy to use
+- No external dependencies
+- Reports failing source code line and condition
+
+
+Quick start
+===========
 See include/vtest.h for API and vtest_example.c for an example.
 
-    $ cc -Iinclude -std=c99 -Wall -Wextra -pedantic vtest_example.c vtest.c -o vtest_example
+
+Example unit test
+-----------------
+
+    $ cat vtest_example.c
+    #include <vtest.h>
+
+    int main(void)
+    {
+            vtest_init();
+
+            vtest(0 == 1);
+            vtest(1 == 1);
+            vtest("I should not fail")
+            vtest(!"I should fail")
+
+            vtest_report();
+            vtest_end();
+
+            return 0;
+    }
+
+
+Build
+-----
+
+    $ make
+    cc -c  -Iinclude -std=c99 -Wall -Wextra -pedantic vtest_example.c -o vtest_example.o
+    cc -c  -Iinclude -std=c99 -Wall -Wextra -pedantic vtest.c -o vtest.o
+    cc vtest_example.o vtest.o -o vtest_example
+
+
+Run
+---
+
     $ ./vtest_example 
     
     -----------------
@@ -13,4 +60,10 @@ See include/vtest.h for API and vtest_example.c for an example.
      main:10 '!"I should fail"'
     -----------------
     $ 
+
+
+Limitations
+===========
+
+- vtest is not reentrant
 
